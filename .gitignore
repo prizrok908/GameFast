@@ -1,4 +1,4 @@
-# Зависимости
+# Зависимости и пакеты
 node_modules/
 /.pnp
 .pnp.js
@@ -19,6 +19,21 @@ node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Игнорировать фронтенд
+/src/
+/public/
+/package.json
+/package-lock.json
+/jest.config.js
+/.babelrc
+/__mocks__/
+
+# Временные файлы Microsoft Office
+~$*
+
+# Игнорировать бэкенд
+/Backend/
 
 # .NET Core
 *.swp
@@ -53,7 +68,4 @@ msbuild.wrn
 # SQLite
 *.db
 *.sqlite
-*.sqlite-journal
-
-# Временные файлы Microsoft Office
-~$* 
+*.sqlite-journal 

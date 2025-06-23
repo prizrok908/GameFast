@@ -1,0 +1,154 @@
+.account-section {
+    padding: 40px 20px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.account-info {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.04);
+}
+
+.avatar-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 40px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.avatar-container {
+    width: 180px;
+    height: 180px;
+    margin: 0 auto 20px;
+}
+
+.current-avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.change-avatar-button {
+    background-color: #343a40;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 500;
+    margin: 0 auto;
+    display: block;
+    outline: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+    box-shadow: none !important;
+}
+
+.change-avatar-button:hover {
+    background-color: #23272b;
+}
+
+.change-avatar-button:active,
+.change-avatar-button:focus {
+    transform: scale(0.98);
+    outline: none !important;
+    box-shadow: none !important;
+    -webkit-appearance: none !important;
+}
+
+.user-details {
+    padding: 0 10px;
+}
+
+.detail-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 12px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+.detail-item:last-child {
+    margin-bottom: 0;
+}
+
+.detail-label {
+    color: #495057;
+    font-size: 15px;
+    font-weight: 600;
+    margin-right: 8px;
+}
+
+.detail-value {
+    color: #212529;
+    font-size: 15px;
+}
+
+.account-actions {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-top: 30px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.logout-button,
+.delete-account-button {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 500;
+    outline: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+    box-shadow: none !important;
+    -webkit-appearance: none !important;
+}
+
+.logout-button {
+    background-color: #dc3545;
+    color: white;
+}
+
+.logout-button:hover {
+    background-color: #c82333;
+}
+
+.logout-button:active,
+.logout-button:focus {
+    transform: scale(0.98);
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.delete-account-button {
+    background-color: #6c757d;
+    color: white;
+}
+
+.delete-account-button:hover {
+    background-color: #5a6268;
+}
+
+.delete-account-button:active,
+.delete-account-button:focus {
+    transform: scale(0.98);
+    outline: none !important;
+    box-shadow: none !important;
+} 

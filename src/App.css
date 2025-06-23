@@ -1,0 +1,9 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f5f5f5;
+  }
+  main {
+    margin-top: 1px; /* Было 70px. Меньше отступ между шапкой и контентом */
+  }

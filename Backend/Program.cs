@@ -44,6 +44,7 @@ builder.Services.AddCors(options =>
             builder.WithOrigins(allowedOrigins)
                 .AllowAnyMethod()
                 .AllowAnyHeader()
+                .SetIsOriginAllowedToAllowWildcardSubdomains()
                 .AllowCredentials();
         }
         else
@@ -58,6 +59,7 @@ builder.Services.AddCors(options =>
             )
             .AllowAnyMethod()
             .AllowAnyHeader()
+            .SetIsOriginAllowedToAllowWildcardSubdomains()
             .AllowCredentials();
         }
     });

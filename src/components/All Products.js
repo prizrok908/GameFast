@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./AllProducts.css";
+import config from '../config';
 
 const AllProducts = () => {
   const [products, setProducts] = useState([]);
@@ -12,7 +13,7 @@ const AllProducts = () => {
     const fetchProducts = async () => {
       try {
         setLoading(true);
-        const response = await fetch("http://localhost:5000/api/products");
+        const response = await fetch(`${config.API_URL}/products`);
 
         if (!response.ok) {
           throw new Error("Не удалось загрузить товары");
@@ -54,7 +55,7 @@ const AllProducts = () => {
         quantity: 1
       };
 
-      const response = await fetch("http://localhost:5000/api/cart", {
+      const response = await fetch(`${config.API_URL}/cart`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

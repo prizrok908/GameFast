@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from 'recharts';
 import './AdminPanel.css';
+import config from '../config';
 
 const AdminPanel = () => {
     const [activeTab, setActiveTab] = useState('products');
@@ -40,7 +41,7 @@ const AdminPanel = () => {
 
     const fetchProductStats = useCallback(async () => {
         try {
-            const response = await fetch('http://localhost:5000/api/statistics/purchases', {
+            const response = await fetch(`${config.API_URL}/statistics/purchases`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
                 }
@@ -62,7 +63,7 @@ const AdminPanel = () => {
 
     const fetchPaymentStats = useCallback(async () => {
         try {
-            const response = await fetch('http://localhost:5000/api/statistics/payments', {
+            const response = await fetch(`${config.API_URL}/statistics/payments`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
                 }
@@ -101,7 +102,7 @@ const AdminPanel = () => {
 
     const fetchProducts = useCallback(async () => {
         try {
-            const response = await fetch('http://localhost:5000/api/products', {
+            const response = await fetch(`${config.API_URL}/products`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
                 }
@@ -117,7 +118,7 @@ const AdminPanel = () => {
 
     const fetchUsers = useCallback(async () => {
         try {
-            const response = await fetch('http://localhost:5000/api/users', {
+            const response = await fetch(`${config.API_URL}/users`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
                 }
@@ -133,7 +134,7 @@ const AdminPanel = () => {
 
     const fetchOrders = useCallback(async () => {
         try {
-            const response = await fetch('http://localhost:5000/api/orders', {
+            const response = await fetch(`${config.API_URL}/orders`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
                 }
@@ -180,7 +181,7 @@ const AdminPanel = () => {
                 imageUrl: newProduct.imageUrl,
                 stockQuantity: parseInt(newProduct.stockQuantity, 10)
             };
-            const response = await fetch('http://localhost:5000/api/products', {
+            const response = await fetch(`${config.API_URL}/products`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -216,7 +217,7 @@ const AdminPanel = () => {
     const handleDeleteProduct = async (productId) => {
         if (window.confirm('Вы уверены, что хотите удалить этот товар?')) {
             try {
-                const response = await fetch(`http://localhost:5000/api/products/${productId}`, {
+                const response = await fetch(`${config.API_URL}/products/${productId}`, {
                     method: 'DELETE',
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -242,7 +243,7 @@ const AdminPanel = () => {
 
     const handleUpdateUserRole = async (userId, newRole) => {
         try {
-            const response = await fetch(`http://localhost:5000/api/users/${userId}/role`, {
+            const response = await fetch(`${config.API_URL}/users/${userId}/role`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -285,7 +286,7 @@ const AdminPanel = () => {
                 imageUrl: editProduct.imageUrl,
                 stockQuantity: parseInt(editProduct.stockQuantity, 10)
             };
-            const response = await fetch(`http://localhost:5000/api/products/${productId}`, {
+            const response = await fetch(`${config.API_URL}/products/${productId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -325,7 +326,7 @@ const AdminPanel = () => {
         // Отправка на backend
         const formData = new FormData();
         formData.append('file', file);
-        const response = await fetch('http://localhost:5000/api/Products/UploadImage', {
+        const response = await fetch(`${config.API_URL}/Products/UploadImage`, {
             method: 'POST',
             headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` },
             body: formData
@@ -344,7 +345,7 @@ const AdminPanel = () => {
         setEditImagePreview(URL.createObjectURL(file));
         const formData = new FormData();
         formData.append('file', file);
-        const response = await fetch('http://localhost:5000/api/Products/UploadImage', {
+        const response = await fetch(`${config.API_URL}/Products/UploadImage`, {
             method: 'POST',
             headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` },
             body: formData
@@ -359,7 +360,7 @@ const AdminPanel = () => {
 
     const handleUpdateOrderStatus = async (orderId, newStatus) => {
         try {
-            const response = await fetch(`http://localhost:5000/api/orders/${orderId}/status`, {
+            const response = await fetch(`${config.API_URL}/orders/${orderId}/status`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

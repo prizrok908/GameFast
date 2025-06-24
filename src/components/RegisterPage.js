@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import './RegisterPage.css';
+import config from '../config';
 
 const RegisterPage = () => {
     const [formData, setFormData] = useState({
@@ -74,7 +75,7 @@ const RegisterPage = () => {
 
         try {
             console.log('Attempting to register with:', { email: formData.email, username: formData.username });
-            const response = await fetch('http://localhost:5000/api/auth/register', {
+            const response = await fetch(`${config.API_URL}/auth/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

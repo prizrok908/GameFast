@@ -3,6 +3,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import defaultAvatar from '../assets/default-avatar.svg';
 import './ProfilePage.css';
+import config from '../config';
 
 const ProfilePage = () => {
     const [user, setUser] = useState(null);
@@ -37,7 +38,7 @@ const ProfilePage = () => {
             }
 
             // Получаем данные профиля
-            const response = await fetch('http://localhost:5000/api/auth/profile', {
+            const response = await fetch(`${config.API_URL}/auth/profile`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -48,7 +49,7 @@ const ProfilePage = () => {
                 setUser(data);
                 
                 // Получаем историю покупок
-                const purchasesResponse = await fetch('http://localhost:5000/api/purchases', {
+                const purchasesResponse = await fetch(`${config.API_URL}/purchases`, {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
@@ -69,7 +70,7 @@ const ProfilePage = () => {
                 }
 
                 // Получаем корзину
-                const cartResponse = await fetch('http://localhost:5000/api/cart', {
+                const cartResponse = await fetch(`${config.API_URL}/cart`, {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
@@ -109,7 +110,7 @@ const ProfilePage = () => {
             return;
         }
         try {
-            const response = await fetch(`http://localhost:5000/api/cart/${itemId}`, {
+            const response = await fetch(`${config.API_URL}/cart/${itemId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -143,7 +144,7 @@ const ProfilePage = () => {
 
     const handleRemoveFromCart = async (itemId) => {
         try {
-            const response = await fetch(`http://localhost:5000/api/cart/${itemId}`, {
+            const response = await fetch(`${config.API_URL}/cart/${itemId}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -174,7 +175,7 @@ const ProfilePage = () => {
         formData.append('userId', user.id);
 
         try {
-            const response = await fetch('http://localhost:5000/api/users/avatar', {
+            const response = await fetch(`${config.API_URL}/users/avatar`, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -273,7 +274,7 @@ const ProfilePage = () => {
         if (window.confirm('Вы уверены, что хотите удалить свой аккаунт? Это действие нельзя отменить.')) {
             try {
                 const token = localStorage.getItem('token');
-                const response = await fetch('http://localhost:5000/api/auth/delete-account', {
+                const response = await fetch(`${config.API_URL}/auth/delete-account`, {
                     method: 'DELETE',
                     headers: {
                         'Authorization': `Bearer ${token}`
@@ -396,7 +397,7 @@ const ProfilePage = () => {
                                                 <div key={index} className="purchase-card">
                                                     <div className="purchase-image">
                                                         <img 
-                                                            src={`http://localhost:5000${purchase.imageUrl}`} 
+                                                            src={purchase.imageUrl.startsWith('http') ? purchase.imageUrl : `https://gamefast-backend.onrender.com${purchase.imageUrl}`} 
                                                             alt={purchase.productName} 
                                                         />
                                                     </div>
@@ -473,7 +474,7 @@ const ProfilePage = () => {
                                                         </div>
                                                         <div className="item-content">
                                                             <div className="item-image">
-                                                                <img src={`http://localhost:5000${item.imageUrl}`} alt={item.productName} />
+                                                                <img src={item.imageUrl.startsWith('http') ? item.imageUrl : `https://gamefast-backend.onrender.com${item.imageUrl}`} alt={item.productName} />
                                                             </div>
                                                             <div className="item-details">
                                                                 <h4>{item.productName}</h4>
@@ -530,7 +531,7 @@ const ProfilePage = () => {
                                         <div className="avatar-wrapper">
                                             <div className="avatar-container">
                                                 <img 
-                                                    src={user.avatarUrl ? `http://localhost:5000${user.avatarUrl}` : defaultAvatar} 
+                                                    src={user.avatarUrl ? (user.avatarUrl.startsWith('http') ? user.avatarUrl : `https://gamefast-backend.onrender.com${user.avatarUrl}`) : defaultAvatar} 
                                                     alt="Аватар пользователя" 
                                                     className="current-avatar"
                                                 />

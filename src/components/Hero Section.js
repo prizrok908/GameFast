@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import "./HeroSection.css";
+import config from "../config";
 
 const HeroSection = () => {
   const games = [
-    { id: 1, img: "https://gamefast-backend.onrender.com/images/games/Horizon Forbidden West.jpg" },
-    { id: 2, img: "https://gamefast-backend.onrender.com/images/consoles/playstation 5 pro digital edition.jpg" },
-    { id: 3, img: "https://gamefast-backend.onrender.com/images/accessories/SSD M.2.png" },
-    { id: 4, img: "https://gamefast-backend.onrender.com/images/games/God of War Ragnarök.jpg" },
+    { id: 1, img: "/images/games/horizon.jpg" },
+    { id: 2, img: "/images/consoles/ps5-digital.jpg" },
+    { id: 3, img: "/images/accessories/dualsense.jpg" },
+    { id: 4, img: "/images/games/god-of-war.jpg" },
   ];
 
   const [currentGameIndex, setCurrentGameIndex] = useState(0);
@@ -44,7 +45,7 @@ const HeroSection = () => {
         <div className="game-label">НОВИНКИ</div>
         <div className="game-container">
           <img
-            src={games[currentGameIndex].img}
+            src={config.getImageUrl(games[currentGameIndex].img)}
             alt="Game"
             className={`main-image ${isFading ? "fade" : ""}`}
           />

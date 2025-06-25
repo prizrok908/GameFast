@@ -4,23 +4,22 @@ const isProduction = process.env.NODE_ENV === 'production' ||
                     window.location.hostname.includes('vercel.app') ||
                     window.location.hostname !== 'localhost';
 
-const API_URL = isProduction
-  ? '/api' // Используем относительный путь для прокси через Vercel
-  : 'http://localhost:5000/api';
+// Принудительно используем относительные пути для API
+const API_URL = '/api';
 
 // Функция для формирования URL изображений
 const getImageUrl = (path) => {
   if (!path) return '';
   if (path.startsWith('http')) return path;
   
-  return isProduction
-    ? path // Используем относительный путь для прокси через Vercel
-    : `http://localhost:5000${path}`;
+  // Принудительно используем относительные пути для изображений
+  return path;
 };
 
 // Для отладки
 console.log('Environment:', isProduction ? 'Production' : 'Development');
 console.log('API URL:', API_URL);
+console.log('Hostname:', window.location.hostname);
 
 export default {
   API_URL,
